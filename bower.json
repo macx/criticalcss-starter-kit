@@ -1,0 +1,31 @@
+{
+  "name": "criticalcss-starter-kit",
+  "version": "0.0.1",
+  "homepage": "https://github.com/macx/criticalcss-starter-kit",
+  "authors": [
+    "David Maciejewski <macx@macx.de>"
+  ],
+  "description": "Grunt Starter Kit using Critical CSS",
+  "main": "dist/index.php",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "criticalcss",
+    "grunt",
+    "starterkit",
+    "php"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "~3.0.3",
+    "loadcss": "~0.1.7"
+  }
+}
