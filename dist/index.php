@@ -51,7 +51,7 @@
   if($criticalCss === true) {
     $javascriptCssLoader = 'assets/js/loadCss.min.js';
     if(file_exists($javascriptCssLoader)) {
-      $loadCss = file_get_contents($loadCssFile);
+      $loadCss = file_get_contents($javascriptCssLoader);
       echo "\n<script>" . $loadCss;
       echo ' loadCSS(\'' . $cssFile . '\');';
       echo "</script>\n";
