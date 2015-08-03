@@ -157,6 +157,14 @@ module.exports = function(grunt) {
           buffer: 800*1024
         }
       }
+    },
+
+    release: {
+      options: {
+        tagName: 'v<%= version %>',
+        additionalFiles: ['bower.json'],
+        npm: false
+      }
     }
   });
 
