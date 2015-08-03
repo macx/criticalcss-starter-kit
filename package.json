@@ -1,6 +1,6 @@
 {
   "name": "criticalcss-starter-kit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Grunt Starter Kit using Critical CSS",
   "main": "dist/index.php",
   "scripts": {
