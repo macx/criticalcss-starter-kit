@@ -73,11 +73,6 @@ module.exports = function(grunt) {
         cwd: '<%= config.src %>/assets/img/',
         src: ['**/*.{jpg,gif,png,svg}', '!_responsive/**/*'],
         dest: '<%= config.dist %>/assets/img/'
-      },
-      vendor: {
-        files: {
-          '<%= config.dist %>/assets/js/loadCss.min.js': ['vendor/loadCSS/loadCSS.js']
-        }
       }
     },
 
@@ -159,6 +154,18 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      options: {
+        mangle: false,
+        preserveComments: false
+      },
+      dist: {
+        files: {
+          '<%= config.dist %>/assets/js/loadCss.min.js': ['<%= config.vendor %>/loadcss/loadCSS.js']
+        }
+      }
+    },
+
     release: {
       options: {
         tagName: 'v<%= version %>',
@@ -173,7 +180,8 @@ module.exports = function(grunt) {
     'clean:assets',
     'sass',
     'postcss:dist',
-    'copy'
+    'copy',
+    'uglify'
   ]);
 
   grunt.registerTask('critical', [
