@@ -15,13 +15,7 @@ module.exports = function(grunt) {
     config: {
       src: 'src',
       dist: 'dist',
-      vendor: {
-        css: [
-          'vendor/normalize-css/normalize.css'
-        ],
-        js: [
-        ]
-      }
+      vendor: 'vendor'
     },
 
     /**
@@ -52,28 +46,12 @@ module.exports = function(grunt) {
         options: {
           outputStyle: 'compressed',
           sourceComments: 'none',
-          sourceMap: true
+          sourceMap: false
         },
         files: {
           '<%= config.dist %>/assets/css/main.css': '<%= config.src %>/scss/main.scss'
         }
       },
-    },
-
-    /**
-     * Merging files
-     */
-    concat: {
-      css: {
-        //options: {
-        //  banner: '<%= meta.banner %>',
-        //},
-        src: [
-          '<%= config.vendor.css %>',
-          '<%= config.dist %>/assets/css/*.css',
-        ],
-        dest: '<%= config.dist %>/assets/css/main.css'
-      }
     },
 
     clean: {
@@ -106,7 +84,7 @@ module.exports = function(grunt) {
     watch: {
       css: {
         files: ['<%= config.src %>/scss/**/*.scss'],
-        tasks: ['scsslint', 'sass', 'concat:css', 'postcss', 'cssmin:minify']
+        tasks: ['sass', 'postcss:dist']
       }
     },
 
@@ -148,14 +126,34 @@ module.exports = function(grunt) {
       }
     },
 
+    postcss: {
+      options: {
+        map: false,
+        processors: [
+          require('autoprefixer-core')({
+            browsers: ['last 2 version', 'ie 9']
+          }),
+          require('csswring')({
+            removeAllComments: true
+          })
+        ]
+      },
+      dist: {
+        src: '<%= config.dist %>/assets/css/*.css'
+      },
+      critical: {
+        src: '<%= config.dist %>/assets/css/critical/*.css'
+      }
+    },
+
     criticalcss: {
-      home: {
+      index: {
         options: {
           url: 'http://<%= php.dist.options.hostname %>:<%= php.dist.options.port %>',
-          outputfile: '<%= config.dist %>/assets/css/critical/home.css',
+          outputfile: '<%= config.dist %>/assets/css/critical/index.css',
           filename: '<%= config.dist %>/assets/css/main.css',
-          width: 360,
-          height: 640,
+          width: 320,
+          height: 480,
           buffer: 800*1024
         }
       }
@@ -166,7 +164,7 @@ module.exports = function(grunt) {
     'jshint',
     'clean:assets',
     'sass',
-    'concat',
+    'postcss:dist',
     'copy'
   ]);
 
@@ -174,7 +172,7 @@ module.exports = function(grunt) {
     'clean:critical',
     'php',
     'criticalcss',
-    'cssmin:critical'
+    'postcss:critical'
   ]);
 
   grunt.registerTask('dist', [

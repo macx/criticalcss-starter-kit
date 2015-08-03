@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>Critical CSS Starter Kit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <?php
     // handle critical css
@@ -22,19 +23,42 @@
   ?>
 </head>
 <body>
-  <div>CONTENT</div>
 
-  <?php
-    if($criticalCss === true) {
-      $javascriptCssLoader = 'assets/js/loadCss.min.js';
-      if(file_exists($javascriptCssLoader)) {
-        $loadCss = file_get_contents($loadCssFile);
-        echo "\n<script>" . $loadCss;
-        echo ' loadCSS(\'' . $cssFile . '\');';
-        echo "</script>\n";
-        echo "<noscript>" . '<link rel="stylesheet" href="' . $cssFile . '" async></noscript>' . "\n";
-      }
+<header class="m-header">
+  Critical CSS Starter Kit
+</header>
+
+<div class="m-content">
+  <h1>
+    Performance Optimization with Critical CSS
+  </h1>
+
+  <p>
+    Please scroll down to view the footer.
+  </p>
+
+  <p>
+    Running the task <code>grunt dist</code> must not
+    include the styling of the footer in the critical css.
+  </p>
+</div>
+
+<footer class="m-footer">
+  Footer
+</div>
+
+<?php
+  if($criticalCss === true) {
+    $javascriptCssLoader = 'assets/js/loadCss.min.js';
+    if(file_exists($javascriptCssLoader)) {
+      $loadCss = file_get_contents($loadCssFile);
+      echo "\n<script>" . $loadCss;
+      echo ' loadCSS(\'' . $cssFile . '\');';
+      echo "</script>\n";
+      echo "<noscript>" . '<link rel="stylesheet" href="' . $cssFile . '" async></noscript>' . "\n";
     }
-  ?>
+  }
+?>
+
 </body>
 </html>

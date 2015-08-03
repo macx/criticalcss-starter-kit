@@ -1,3 +1,54 @@
-div {
-  border: 1px solid red;
+@charset 'utf-8';
+
+@import 'http://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Roboto+Slab';
+
+@import '../../vendor/normalize.css/normalize';
+
+$layout-spacing: 24px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #212121;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code {
+  display: inline-block;
+  background: #C8E6C9;
+  font-family: 'Roboto Mono', monospace;
+  padding: .1em .4em .2em;
+  font-size: .9em;
+}
+
+h1 {
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+.m-header {
+  background: #4CAF50;
+  padding: $layout-spacing;
+}
+
+.m-content {
+  background: #E8F5E9;
+  padding: $layout-spacing;
+  min-height: 100vh;
+  min-height: 2500px;
+}
+
+.m-footer {
+  background: #1B5E20;
+  color: #fff;
+  padding: $layout-spacing;
 }
